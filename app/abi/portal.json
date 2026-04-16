@@ -1,0 +1,3611 @@
+[
+  {
+    "type": "function",
+    "name": "buy",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "recipient",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "minAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "buyOnCreation",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "recipient",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "inputAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "claim",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "tokenAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "ethAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "commitNewTokenV5",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct IPortalTypes.CommitNewTokenV5Params",
+        "components": [
+          {
+            "name": "salt",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "taxRate",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "symbol",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "meta",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "quoteAmt",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "beneficiary",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "permitData",
+            "type": "bytes",
+            "internalType": "bytes"
+          },
+          {
+            "name": "taxDuration",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "antiFarmerDuration",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "mktBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "deflationBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "dividendBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "lpBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "minimumShareBalance",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "delegateClaim",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "tokenAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "quoteAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "enableTaxOnBondingCurve",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "enabled",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getFeeRate",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "buyFeeRate",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "sellFeeRate",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getLocks",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "locks",
+        "type": "uint256[]",
+        "internalType": "uint256[]"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getQuoteTokenConfiguration",
+    "inputs": [
+      {
+        "name": "quoteToken",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "config",
+        "type": "tuple",
+        "internalType": "struct IPortalTypes.QuoteTokenConfiguration",
+        "components": [
+          {
+            "name": "enabled",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "defaultCurve",
+            "type": "uint8",
+            "internalType": "enum IPortalCommonTypes.CurveType"
+          },
+          {
+            "name": "alternativeCurve",
+            "type": "uint8",
+            "internalType": "enum IPortalCommonTypes.CurveType"
+          },
+          {
+            "name": "nativeToQuoteSwapType",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.NativeToQuoteSwapType"
+          },
+          {
+            "name": "dexId",
+            "type": "uint8",
+            "internalType": "uint8"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getRoleAdmin",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getTokenV2",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "state",
+        "type": "tuple",
+        "internalType": "struct IPortalTypes.TokenStateV2",
+        "components": [
+          {
+            "name": "status",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.TokenStatus"
+          },
+          {
+            "name": "reserve",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "circulatingSupply",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "price",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "tokenVersion",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.TokenVersion"
+          },
+          {
+            "name": "r",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "dexSupplyThresh",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getTokenV3",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "state",
+        "type": "tuple",
+        "internalType": "struct IPortalTypes.TokenStateV3",
+        "components": [
+          {
+            "name": "status",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.TokenStatus"
+          },
+          {
+            "name": "reserve",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "circulatingSupply",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "price",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "tokenVersion",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.TokenVersion"
+          },
+          {
+            "name": "r",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "dexSupplyThresh",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "quoteTokenAddress",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "nativeToQuoteSwapEnabled",
+            "type": "bool",
+            "internalType": "bool"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getTokenV4",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "state",
+        "type": "tuple",
+        "internalType": "struct IPortalTypes.TokenStateV4",
+        "components": [
+          {
+            "name": "status",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.TokenStatus"
+          },
+          {
+            "name": "reserve",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "circulatingSupply",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "price",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "tokenVersion",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.TokenVersion"
+          },
+          {
+            "name": "r",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "dexSupplyThresh",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "quoteTokenAddress",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "nativeToQuoteSwapEnabled",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "extensionID",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getTokenV5",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "state",
+        "type": "tuple",
+        "internalType": "struct IPortalTypes.TokenStateV5",
+        "components": [
+          {
+            "name": "status",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.TokenStatus"
+          },
+          {
+            "name": "reserve",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "circulatingSupply",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "price",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "tokenVersion",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.TokenVersion"
+          },
+          {
+            "name": "r",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "h",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "k",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "dexSupplyThresh",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "quoteTokenAddress",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "nativeToQuoteSwapEnabled",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "extensionID",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getTokenV6",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "state",
+        "type": "tuple",
+        "internalType": "struct IPortalTypes.TokenStateV6",
+        "components": [
+          {
+            "name": "status",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.TokenStatus"
+          },
+          {
+            "name": "reserve",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "circulatingSupply",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "price",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "tokenVersion",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.TokenVersion"
+          },
+          {
+            "name": "r",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "h",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "k",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "dexSupplyThresh",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "quoteTokenAddress",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "nativeToQuoteSwapEnabled",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "extensionID",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "taxRate",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "pool",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "progress",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getTokenV7",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "state",
+        "type": "tuple",
+        "internalType": "struct IPortalTypes.TokenStateV7",
+        "components": [
+          {
+            "name": "status",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.TokenStatus"
+          },
+          {
+            "name": "reserve",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "circulatingSupply",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "price",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "tokenVersion",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.TokenVersion"
+          },
+          {
+            "name": "r",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "h",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "k",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "dexSupplyThresh",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "quoteTokenAddress",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "nativeToQuoteSwapEnabled",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "extensionID",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "taxRate",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "pool",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "progress",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "lpFeeProfile",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.V3LPFeeProfile"
+          },
+          {
+            "name": "dexId",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.DEXId"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "grantRole",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "halt",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "hasRole",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "isSpammerBlocked",
+    "inputs": [
+      {
+        "name": "spammer",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "newTokenV2",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct IPortalTypes.NewTokenV2Params",
+        "components": [
+          {
+            "name": "name",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "symbol",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "meta",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "dexThresh",
+            "type": "uint8",
+            "internalType": "enum IPortalCommonTypes.DexThreshType"
+          },
+          {
+            "name": "salt",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "taxRate",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "migratorType",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.MigratorType"
+          },
+          {
+            "name": "quoteToken",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "quoteAmt",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "beneficiary",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "permitData",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "newTokenV3",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct IPortalTypes.NewTokenV3Params",
+        "components": [
+          {
+            "name": "name",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "symbol",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "meta",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "dexThresh",
+            "type": "uint8",
+            "internalType": "enum IPortalCommonTypes.DexThreshType"
+          },
+          {
+            "name": "salt",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "taxRate",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "migratorType",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.MigratorType"
+          },
+          {
+            "name": "quoteToken",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "quoteAmt",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "beneficiary",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "permitData",
+            "type": "bytes",
+            "internalType": "bytes"
+          },
+          {
+            "name": "extensionID",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "extensionData",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "newTokenV4",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct IPortalTypes.NewTokenV4Params",
+        "components": [
+          {
+            "name": "name",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "symbol",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "meta",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "dexThresh",
+            "type": "uint8",
+            "internalType": "enum IPortalCommonTypes.DexThreshType"
+          },
+          {
+            "name": "salt",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "taxRate",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "migratorType",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.MigratorType"
+          },
+          {
+            "name": "quoteToken",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "quoteAmt",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "beneficiary",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "permitData",
+            "type": "bytes",
+            "internalType": "bytes"
+          },
+          {
+            "name": "extensionID",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "extensionData",
+            "type": "bytes",
+            "internalType": "bytes"
+          },
+          {
+            "name": "dexId",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.DEXId"
+          },
+          {
+            "name": "lpFeeProfile",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.V3LPFeeProfile"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "newTokenV5",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct IPortalTypes.NewTokenV5Params",
+        "components": [
+          {
+            "name": "name",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "symbol",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "meta",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "dexThresh",
+            "type": "uint8",
+            "internalType": "enum IPortalCommonTypes.DexThreshType"
+          },
+          {
+            "name": "salt",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "taxRate",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "migratorType",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.MigratorType"
+          },
+          {
+            "name": "quoteToken",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "quoteAmt",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "beneficiary",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "permitData",
+            "type": "bytes",
+            "internalType": "bytes"
+          },
+          {
+            "name": "extensionID",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "extensionData",
+            "type": "bytes",
+            "internalType": "bytes"
+          },
+          {
+            "name": "dexId",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.DEXId"
+          },
+          {
+            "name": "lpFeeProfile",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.V3LPFeeProfile"
+          },
+          {
+            "name": "taxDuration",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "antiFarmerDuration",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "mktBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "deflationBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "dividendBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "lpBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "minimumShareBalance",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "nonce",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "previewBuy",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "eth",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "previewRedeem",
+    "inputs": [
+      {
+        "name": "srcToken",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "dstToken",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "srcAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "dstAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "previewSell",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "eth",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "quoteExactInput",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct IPortalTradeV2.QuoteExactInputParams",
+        "components": [
+          {
+            "name": "inputToken",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "outputToken",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "inputAmount",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "outputAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "redeem",
+    "inputs": [
+      {
+        "name": "srcToken",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "dstToken",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "srcAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "dstAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "registerExtension",
+    "inputs": [
+      {
+        "name": "extensionId",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "extensionAddress",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "version",
+        "type": "uint8",
+        "internalType": "uint8"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "renounceRole",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "revokeRole",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "rollv2",
+    "inputs": [
+      {
+        "name": "packedParams",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "sell",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "minEth",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "eth",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "sendMsg",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "message",
+        "type": "string",
+        "internalType": "string"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setBitFlags",
+    "inputs": [
+      {
+        "name": "flags",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setFeeExemption",
+    "inputs": [
+      {
+        "name": "traders",
+        "type": "address[]",
+        "internalType": "address[]"
+      },
+      {
+        "name": "isExempted",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setFlapFeeProfile",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "feeProfile",
+        "type": "uint8",
+        "internalType": "enum IPortalCommonTypes.FlapFeeProfile"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setQuoteTokenConfiguration",
+    "inputs": [
+      {
+        "name": "quoteToken",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "config",
+        "type": "tuple",
+        "internalType": "struct IPortalTypes.QuoteTokenConfiguration",
+        "components": [
+          {
+            "name": "enabled",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "defaultCurve",
+            "type": "uint8",
+            "internalType": "enum IPortalCommonTypes.CurveType"
+          },
+          {
+            "name": "alternativeCurve",
+            "type": "uint8",
+            "internalType": "enum IPortalCommonTypes.CurveType"
+          },
+          {
+            "name": "nativeToQuoteSwapType",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.NativeToQuoteSwapType"
+          },
+          {
+            "name": "dexId",
+            "type": "uint8",
+            "internalType": "uint8"
+          }
+        ]
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setSpammerBlockedBatch",
+    "inputs": [
+      {
+        "name": "spammers",
+        "type": "address[]",
+        "internalType": "address[]"
+      },
+      {
+        "name": "blocked",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setTokenBeneficiary",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "newBeneficiary",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "stageNewTokenV5",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct IPortalTypes.StageNewTokenV5Params",
+        "components": [
+          {
+            "name": "dexThresh",
+            "type": "uint8",
+            "internalType": "enum IPortalCommonTypes.DexThreshType"
+          },
+          {
+            "name": "salt",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "isTaxToken",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "migratorType",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.MigratorType"
+          },
+          {
+            "name": "quoteToken",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "dexId",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.DEXId"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "swapExactInput",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct IPortalTradeV2.ExactInputParams",
+        "components": [
+          {
+            "name": "inputToken",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "outputToken",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "inputAmount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "minOutputAmount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "permitData",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "outputAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "swapExactInputV3",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct IPortalTradeV2.ExactInputV3Params",
+        "components": [
+          {
+            "name": "inputToken",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "outputToken",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "inputAmount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "minOutputAmount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "permitData",
+            "type": "bytes",
+            "internalType": "bytes"
+          },
+          {
+            "name": "extensionData",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "outputAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "updateTaxTokenAddresses",
+    "inputs": [
+      {
+        "name": "updates",
+        "type": "tuple[]",
+        "internalType": "struct IPortalTweak.TaxTokenAddressUpdate[]",
+        "components": [
+          {
+            "name": "token",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "beneficiary",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "feeReceiver",
+            "type": "address",
+            "internalType": "address"
+          }
+        ]
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "updateTokenPoolInfo",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "poolInfo",
+        "type": "tuple",
+        "internalType": "struct IPortalTypes.PackedDexPool",
+        "components": [
+          {
+            "name": "pool",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "fee",
+            "type": "uint24",
+            "internalType": "uint24"
+          },
+          {
+            "name": "poolType",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.PoolType"
+          },
+          {
+            "name": "unused",
+            "type": "uint64",
+            "internalType": "uint64"
+          }
+        ]
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "version",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "string",
+        "internalType": "string"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "event",
+    "name": "BeneficiaryChanged",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "oldBeneficiary",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "newBeneficiary",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "BeneficiaryClaimed",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "beneficiary",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "tokenAmount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "ethAmount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "BitFlagsChanged",
+    "inputs": [
+      {
+        "name": "oldFlags",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "newFlags",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "CheckedIn",
+    "inputs": [
+      {
+        "name": "user",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "ExtensionRegistered",
+    "inputs": [
+      {
+        "name": "extensionId",
+        "type": "bytes32",
+        "indexed": false,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "extensionAddress",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "version",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "uint8"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "FeeExemptionUpdated",
+    "inputs": [
+      {
+        "name": "trader",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "isExempted",
+        "type": "bool",
+        "indexed": false,
+        "internalType": "bool"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "FlapTokenCirculatingSupplyChanged",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "newSupply",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "FlapTokenProgressChanged",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "newProgress",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "FlapTokenStaged",
+    "inputs": [
+      {
+        "name": "ts",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "creator",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "FlapTokenTaxSet",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "tax",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "LaunchedToDEX",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "pool",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "eth",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "MsgSent",
+    "inputs": [
+      {
+        "name": "sender",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "message",
+        "type": "string",
+        "indexed": false,
+        "internalType": "string"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "QuoteTokenConfigurationSet",
+    "inputs": [
+      {
+        "name": "quoteToken",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "config",
+        "type": "tuple",
+        "indexed": false,
+        "internalType": "struct IPortalTypes.QuoteTokenConfiguration",
+        "components": [
+          {
+            "name": "enabled",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "defaultCurve",
+            "type": "uint8",
+            "internalType": "enum IPortalCommonTypes.CurveType"
+          },
+          {
+            "name": "alternativeCurve",
+            "type": "uint8",
+            "internalType": "enum IPortalCommonTypes.CurveType"
+          },
+          {
+            "name": "nativeToQuoteSwapType",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.NativeToQuoteSwapType"
+          },
+          {
+            "name": "dexId",
+            "type": "uint8",
+            "internalType": "uint8"
+          }
+        ]
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "RoleAdminChanged",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "previousAdminRole",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "newAdminRole",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "RoleGranted",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "account",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "sender",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "RoleRevoked",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "account",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "sender",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SpammerBlockedStatusChanged",
+    "inputs": [
+      {
+        "name": "spammer",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "blocked",
+        "type": "bool",
+        "indexed": false,
+        "internalType": "bool"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TaxOnBondingCurvePaid",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TaxTokenAddressesUpdated",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "beneficiary",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "feeReceiver",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TaxV2OnBondingCurvePaid",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TokenBought",
+    "inputs": [
+      {
+        "name": "ts",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "buyer",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "eth",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "fee",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "postPrice",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TokenCreated",
+    "inputs": [
+      {
+        "name": "ts",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "creator",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "nonce",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "indexed": false,
+        "internalType": "string"
+      },
+      {
+        "name": "symbol",
+        "type": "string",
+        "indexed": false,
+        "internalType": "string"
+      },
+      {
+        "name": "meta",
+        "type": "string",
+        "indexed": false,
+        "internalType": "string"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TokenCurveSet",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "curve",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "curveParameter",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TokenCurveSetV2",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "r",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "h",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "k",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TokenDexPreferenceSet",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "dexId",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "enum IPortalTypes.DEXId"
+      },
+      {
+        "name": "lpFeeProfile",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "enum IPortalTypes.V3LPFeeProfile"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TokenDexSupplyThreshSet",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "dexSupplyThresh",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TokenExtensionEnabled",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "extensionID",
+        "type": "bytes32",
+        "indexed": false,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "extensionAddress",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "version",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "uint8"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TokenMigratorSet",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "migratorType",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "enum IPortalTypes.MigratorType"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TokenPoolInfoUpdated",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "poolInfo",
+        "type": "tuple",
+        "indexed": false,
+        "internalType": "struct IPortalTypes.PackedDexPool",
+        "components": [
+          {
+            "name": "pool",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "fee",
+            "type": "uint24",
+            "internalType": "uint24"
+          },
+          {
+            "name": "poolType",
+            "type": "uint8",
+            "internalType": "enum IPortalTypes.PoolType"
+          },
+          {
+            "name": "unused",
+            "type": "uint64",
+            "internalType": "uint64"
+          }
+        ]
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TokenQuoteSet",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "quoteToken",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TokenRedeemed",
+    "inputs": [
+      {
+        "name": "ts",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "srcToken",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "dstToken",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "srcAmount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "dstAmount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "who",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TokenSold",
+    "inputs": [
+      {
+        "name": "ts",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "seller",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "eth",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "fee",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "postPrice",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TokenVersionSet",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "version",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "enum IPortalTypes.TokenVersion"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "V3FavoredFeeSet",
+    "inputs": [
+      {
+        "name": "quoteToken",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "favoredFee",
+        "type": "uint24",
+        "indexed": false,
+        "internalType": "uint24"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "VanityTokenCreated",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "creator",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "beneficiary",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "error",
+    "name": "ActualAmountMustLTEAmount",
+    "inputs": [
+      {
+        "name": "actualAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "amount1",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "AmountTooSmall",
+    "inputs": [
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "AntiFarmerDurationTooLong",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "AntiFarmerDurationTooShort",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "CallReverted",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "CallerNotBeneficiary",
+    "inputs": [
+      {
+        "name": "caller",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "expected",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "DEXCannotBeBothPancakeAndAlgebra1_9",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "DirtyBits",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "DividendParametersRequired",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ErrShouldUsePortalTradeV2",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "FeatureDisabled",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InsufficientCreationFee",
+    "inputs": [
+      {
+        "name": "required",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "provided",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InsufficientEth",
+    "inputs": [
+      {
+        "name": "provided",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "required",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InsufficientFee",
+    "inputs": [
+      {
+        "name": "required",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "provided",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InsufficientValueForTaxTokenCreation",
+    "inputs": [
+      {
+        "name": "expected",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "provided",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InvalidCurveType",
+    "inputs": [
+      {
+        "name": "curveType",
+        "type": "uint8",
+        "internalType": "enum IPortalCommonTypes.CurveType"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InvalidDEXSupplyThreshold",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidDexThreshold",
+    "inputs": [
+      {
+        "name": "threshold",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InvalidDexThresholdType",
+    "inputs": [
+      {
+        "name": "threshold",
+        "type": "uint8",
+        "internalType": "enum IPortalCommonTypes.DexThreshType"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InvalidFeeTierForDEX",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidGameSupplyThreshold",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidLocks",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidMigratorType",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidParamsForToshiMart",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidParamsForXLayer",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidPiggybackLength",
+    "inputs": [
+      {
+        "name": "expected",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "actual",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InvalidPoolAddress",
+    "inputs": [
+      {
+        "name": "pool",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "expected",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InvalidQuoteTokenConfiguration",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidRoundID",
+    "inputs": [
+      {
+        "name": "id",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InvalidSigner",
+    "inputs": [
+      {
+        "name": "signer",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InvalidTaxBps",
+    "inputs": [
+      {
+        "name": "tax",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InvalidTaxDistribution",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidTokenForBattle",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "LastRoundNotResolved",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "MetaAlreadyUsedByOtherToken",
+    "inputs": [
+      {
+        "name": "meta",
+        "type": "string",
+        "internalType": "string"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "MinimumShareBalanceTooLow",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "MismatchedAddressInProof",
+    "inputs": [
+      {
+        "name": "expected",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "actual",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "MultiDexRouterCannotBeZero",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NativeToQuoteSwapFeeTierNotSupported",
+    "inputs": [
+      {
+        "name": "NativeToQuoteSwapType",
+        "type": "uint8",
+        "internalType": "uint8"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "NativeToQuoteSwapNotSupported",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NoConversionPath",
+    "inputs": [
+      {
+        "name": "srcToken",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "dstToken",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "NoLocksAvailable",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "NoQuotaForCreator",
+    "inputs": [
+      {
+        "name": "created",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "max",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "NoSupportedDEX",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NonPositionNFTReceived",
+    "inputs": [
+      {
+        "name": "collection",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "NotGuardian",
+    "inputs": [
+      {
+        "name": "caller",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "NotImplemented",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NotRoller",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NotUniswapV3Pool",
+    "inputs": [
+      {
+        "name": "sender",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "OnlySaleForge",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "PermissionlessCreateDisabled",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "PortalLensCannotBeZero",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "PriceAMustLTPriceB",
+    "inputs": [
+      {
+        "name": "sqrtPriceA",
+        "type": "uint160",
+        "internalType": "uint160"
+      },
+      {
+        "name": "sqrtPriceB",
+        "type": "uint160",
+        "internalType": "uint160"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "ProtocolDisabled",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "QuoteTokenNotAllowed",
+    "inputs": [
+      {
+        "name": "quoteToken",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "QuoteTokenNotNativeButNotUsingTradeV2",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "RequiredTokenMustLTE",
+    "inputs": [
+      {
+        "name": "requiredToken",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "reserveToken",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "RoundNotFound",
+    "inputs": [
+      {
+        "name": "id",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SameToken",
+    "inputs": [
+      {
+        "name": "tokenA",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SeqNotFound",
+    "inputs": [
+      {
+        "name": "seq",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SlippageTooHigh",
+    "inputs": [
+      {
+        "name": "actualAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "minAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "StakingDisabled",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "TaxDurationTooLong",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "TaxDurationTooShort",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "TokenAlreadyDEXed",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "TokenAlreadyInGame",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "TokenAlreadyStaged",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "TokenInDuel",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "TokenKilled",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "TokenNotDEXed",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "TokenNotFound",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "TokenNotInDEXStatus",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "TokenNotKilled",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "TokenNotStaged",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "TokenNotTradable",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "TokenWithExtensionNotSupported",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "TradeDisabled",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "TransferFromFailed",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "from",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "UniswapV2PoolNotZero",
+    "inputs": [
+      {
+        "name": "pool",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "liquidity",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "UniswapV3Slot0Failed",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "UnsupportedExtensionVersion",
+    "inputs": [
+      {
+        "name": "version",
+        "type": "uint8",
+        "internalType": "uint8"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "VanityAddressRequirementNotMet",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "cannotCheckInUntil",
+    "inputs": [
+      {
+        "name": "next",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  }
+]

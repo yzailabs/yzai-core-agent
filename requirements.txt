@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+sqlalchemy
+asyncpg
+python-dotenv
+python-jose
+passlib[bcrypt]
+eth-account
+cryptography
+web3
+alembic
+psycopg2-binary
+Procfile
+httpx
+openai
+resend
