@@ -772,7 +772,8 @@ async def get_chat_history(
 async def withdraw_intent(
     agent_id: str,
     x_account: str,
-    db: AsyncSession = Depends(get_db)
+    db: AsyncSession = Depends(get_db),
+    _: None = Depends(verify_internal_api_key)
 ):
 
     # ==============================
