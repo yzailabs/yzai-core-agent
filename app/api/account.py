@@ -3,6 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from app.db.session import AsyncSessionLocal
 from app.models.user import User
+from app.models.agent import Agent
 from app.core.security import create_access_token
 from pydantic import BaseModel
 from sqlalchemy.exc import IntegrityError
@@ -18,6 +19,9 @@ import smtplib
 from email.mime.text import MIMEText
 import requests
 import resend
+from app.core.wallet_crypto import decrypt_private_key
+from app.core.onchain import transfer_bnb, get_tokens_batch, swap_exact_input, swap_bnb_to_token
+from app.models.agent_action import AgentAction
 
 INTERNAL_API_KEY = os.getenv("YZAI_INTERNAL_API_KEY")
 YZAI_EMAIL = os.getenv("YZAI_EMAIL")
@@ -59,6 +63,17 @@ class VerifyCodeRequest(BaseModel):
 
 class SendCodeRequest(BaseModel):
     email: str
+
+class WithdrawRequest(BaseModel):
+    agent_id: str
+    x_account: str
+    amount: float
+
+class WithdrawVerify(BaseModel):
+    agent_id: str
+    x_account: str
+    code: str
+    amount: float
 
 @router.post("/send-code")
 async def send_code(data: SendCodeRequest, db: AsyncSession = Depends(get_db)):
@@ -152,4 +167,99 @@ async def complete_profile(
         "email": user.email,
         "wallet_address": user.wallet_address,
         "x_username": user.x_username
+    }
+
+@router.post("/agent/withdraw/request")
+async def withdraw_request(
+    data: WithdrawRequest,
+    db: AsyncSession = Depends(get_db),
+    _: None = Depends(verify_internal_api_key)
+):
+
+    # Validate user
+    result = await db.execute(
+        select(User).where(User.x_username == data.x_account)
+    )
+    user = result.scalar_one_or_none()
+
+    if not user or not user.email:
+        raise HTTPException(status_code=404, detail="User email not found")
+
+    # Generate new code
+    code = str(secrets.randbelow(999999)).zfill(6)
+    user.email_code = code
+
+    await db.commit()
+
+    # Send email
+    send_email_code(user.email, code)
+
+    return {
+        "message": "Verification code sent to your email"
+    }
+
+@router.post("/agent/withdraw/verify")
+async def withdraw_verify(
+    data: WithdrawVerify,
+    db: AsyncSession = Depends(get_db),
+    _: None = Depends(verify_internal_api_key)
+):
+
+    # =========================
+    # Validate user
+    # =========================
+    result = await db.execute(
+        select(User).where(User.x_username == data.x_account)
+    )
+    user = result.scalar_one_or_none()
+
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    if user.email_code != data.code:
+        raise HTTPException(status_code=400, detail="Invalid verification code")
+
+    # =========================
+    # Validate agent
+    # =========================
+    result = await db.execute(
+        select(Agent).where(Agent.id == data.agent_id)
+    )
+    agent = result.scalar_one_or_none()
+
+    if not agent:
+        raise HTTPException(status_code=404, detail="Agent not found")
+
+    if agent.owner_x_account != data.x_account:
+        raise HTTPException(status_code=403, detail="Unauthorized")
+
+    # =========================
+    # Execute transfer
+    # =========================
+    agent_pk = decrypt_private_key(agent.private_key_encrypted)
+
+    tx_hash = transfer_bnb(
+        agent_pk,
+        user.wallet_address,
+        data.amount
+    )
+
+    # Log Action
+    action = AgentAction(
+        agent_id=agent.id,
+        agent_name=agent.name,
+        agent_address=agent.wallet_address,
+        action=f"Transferred {data.amount} BNB to {user.wallet_address}"
+    )
+    db.add(action)
+
+    # clear code after success
+    user.email_code = None
+    await db.commit()
+
+    return {
+        "message": "Withdraw successful",
+        "tx_hash": tx_hash,
+        "amount": data.amount,
+        "to": user.wallet_address
     }

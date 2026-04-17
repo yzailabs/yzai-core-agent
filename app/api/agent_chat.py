@@ -30,8 +30,9 @@ from datetime import timezone
 from web3 import Web3
 import os
 import uuid
-from app.models.trade_history import TradeHistory
 from decimal import Decimal
+from app.models.trade_history import TradeHistory
+from app.models.proposal_whitelist import ProposalWhitelist
 from fastapi import Header
 
 router = APIRouter()
@@ -74,70 +75,27 @@ async def agent_chat(
 
     human_message_lower = data.human_msg.lower()
 
+    
     # =====================================
-    # TRANSFER COMMAND
+    # WITHDRAW FLOW (SIMPLIFIED)
     # =====================================
-    handled = True
-    transfer_patterns = [
-        r"send\s+([\d.]+)\s+bnb\s+to\s+(me|owner)",
-        r"send\s+(me|owner)\s+([\d.]+)\s+bnb",
+
+    withdraw_keywords = [
+        "withdraw",
+        "withdraw funds",
+        "cash out",
     ]
 
-    transfer_match = None
-    amount = None
-    target = None
+    if any(k in human_message_lower for k in withdraw_keywords):
 
-    for pattern in transfer_patterns:
-        m = re.search(pattern, human_message_lower)
-        if m:
-            transfer_match = m
-            if pattern.startswith("send\\s+([\\d.]+)"):
-                amount = float(m.group(1))
-                target = m.group(2)
-            else:
-                target = m.group(1)
-                amount = float(m.group(2))
-            break
+        balance = await get_bnb_balance(agent.wallet_address)
 
-    if transfer_match:
-
-        # Resolve destination
-        if target in ["me", "owner"]:
-
-            user_result = await db.execute(
-                select(User).where(User.x_username == data.x_account)
-            )
-            user = user_result.scalar_one_or_none()
-
-            if not user:
-                raise HTTPException(status_code=404, detail="User not found")
-
-            to_address = user.wallet_address
-
-        agent_pk = decrypt_private_key(agent.private_key_encrypted)
-        tx_hash = transfer_bnb(agent_pk, to_address, amount)
-
-        current_balance = await get_bnb_balance(agent.wallet_address)
-
-        agent_response = generate_transfer_response(
-            agent.trading_style,
-            amount,
-            to_address,
-            tx_hash,
-            current_balance
+        agent_response = (
+            f"I have {round(balance, 4)} BNB in my wallet.\n\n"
+            "You can proceed with withdrawal from the following page:\n"
+            "https://www.yzailabs.com/withdraw"
         )
 
-        # Log Action
-        action = AgentAction(
-            agent_id=agent.id,
-            agent_name=agent.name,
-            agent_address=agent.wallet_address,
-            action=f"Transferred {amount} BNB to {to_address}"
-        )
-        db.add(action)
-        await db.commit()
-
-        # Save Chat
         chat_record = AgentChatHistory(
             agent_id=agent.id,
             x_account=data.x_account,
@@ -157,24 +115,118 @@ async def agent_chat(
         }
     
     # =====================================
-    # WITHDRAW FLOW (SIMPLIFIED)
+    # WHITELIST APPLY COMMAND
     # =====================================
 
-    withdraw_keywords = [
-        "withdraw",
-        "withdraw funds",
-        "cash out",
-    ]
+    # Normalize input text
+    normalized_msg = human_message_lower
+    normalized_msg = re.sub(r"'s\b", "", normalized_msg)
+    normalized_msg = re.sub(r"[^a-z0-9\s]", " ", normalized_msg)
+    normalized_msg = re.sub(r"\s+", " ", normalized_msg).strip()
 
-    if any(k in human_message_lower for k in withdraw_keywords):
+    words = normalized_msg.split()
 
-        balance = await get_bnb_balance(agent.wallet_address)
+    # Detect intent keywords
+    has_whitelist = "whitelist" in words
+    has_apply = any(w in words for w in ["apply", "join", "enter", "register"])
 
-        agent_response = (
-            f"I have {round(balance, 4)} BNB in my wallet.\n\n"
-            "Tell me how much to send.\n"
-            "Example: send 0.5 BNB to me\n"
+    # =====================================
+    # FIND TARGET PROPOSAL
+    # =====================================
+    proposal = None
+
+    result = await db.execute(select(Proposal))
+    proposals = result.scalars().all()
+
+    for p in proposals:
+        ticker = p.ticker.lower()
+        name = p.name.lower()
+
+        if (
+            f" {ticker} " in f" {normalized_msg} "
+            or f" {name} " in f" {normalized_msg} "
+        ):
+            proposal = p
+            break
+
+    # If user mentions whitelist + a valid project, assume intent to apply
+    if has_whitelist and proposal:
+        has_apply = True
+
+    # Fallback: if user only says "whitelist <project>"
+    if has_whitelist and not has_apply and proposal:
+        has_apply = True
+
+    # =====================================
+    # EXECUTE WHITELIST LOGIC
+    # =====================================
+    if has_whitelist and has_apply and proposal:
+
+        # Check if already whitelisted
+        result = await db.execute(
+            select(ProposalWhitelist).where(
+                ProposalWhitelist.agent_id == agent.id,
+                ProposalWhitelist.proposal_id == proposal.id
+            )
         )
+
+        existing = result.scalar_one_or_none()
+
+        if existing:
+            agent_response = (
+                f"I am already whitelisted for {proposal.ticker}."
+            )
+        else:
+            # Create whitelist entry
+            whitelist = ProposalWhitelist(
+                agent_id=agent.id,
+                proposal_id=proposal.id,
+                support=True,
+                agent_wallet=agent.wallet_address
+            )
+
+            db.add(whitelist)
+
+            # Log action
+            action = AgentAction(
+                agent_id=agent.id,
+                agent_name=agent.name,
+                agent_address=agent.wallet_address,
+                action=f"Applied for whitelist {proposal.name} ({proposal.ticker})"
+            )
+
+            db.add(action)
+            await db.commit()
+
+            agent_response = (
+                f"I have successfully applied for the whitelist for {proposal.ticker}."
+            )
+
+        # Save chat history
+        chat_record = AgentChatHistory(
+            agent_id=agent.id,
+            x_account=data.x_account,
+            human_msg=data.human_msg,
+            agent_response=agent_response
+        )
+
+        db.add(chat_record)
+        await db.commit()
+
+        return {
+            "agent_id": data.agent_id,
+            "x_account": data.x_account,
+            "human_msg": data.human_msg,
+            "created_at": datetime.utcnow(),
+            "agent_response": agent_response
+        }
+
+    # =====================================
+    # HANDLE CASE: whitelist mentioned but project not found
+    # =====================================
+    if has_whitelist and not proposal:
+
+        agent_response = "Project not found for whitelist."
 
         chat_record = AgentChatHistory(
             agent_id=agent.id,
